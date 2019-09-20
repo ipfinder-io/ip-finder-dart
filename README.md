@@ -31,7 +31,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder(); // null == free token
-  var auth = await ipfinder.authentication();
+  IpResponse auth = await ipfinder.authentication();
   print(auth.toJson()); // print json data
   print(auth.location); // print location
 }
@@ -45,7 +45,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var auth = await ipfinder.authentication();
+  IpResponse auth = await ipfinder.authentication();
   print(auth.toJson()); // print json data
   print(auth.location); // print location
 }
@@ -58,7 +58,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var ip = await ipfinder.getAddressInfo("1.0.0.0");
+  IpResponse ip = await ipfinder.getAddressInfo("1.0.0.0");
   print(ip.toJson()); // print json data
 }
 ```
@@ -71,7 +71,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var asn = await ipfinder.getAsn("as1");
+  AsnResponse asn = await ipfinder.getAsn("as1");
   print(asn.toJson()); // print json data
 }
 ```
@@ -85,7 +85,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var fire = await ipfinder.getFirewall("AS1", "nginx_deny");
+  Response fire = await ipfinder.getFirewall("AS1", "nginx_deny");
   print(fire); // print json data
 }
 ```
@@ -98,7 +98,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var range = await ipfinder.getRanges("Telecom Algeria");
+  RangeResponse range = await ipfinder.getRanges("Telecom Algeria");
   print(range.toJson()); // print json data
 }
 ```
@@ -110,7 +110,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var status = await ipfinder.getStatus();
+  StatusResponse status = await ipfinder.getStatus();
   print(status.toJson()); // print json data
 }
 ```
@@ -123,7 +123,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var domain = await ipfinder.getDomain("google.com");
+  DomainResponse domain = await ipfinder.getDomain("google.com");
   print(domain.toJson()); // print json data
 }
 ```
@@ -137,7 +137,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var domain = await ipfinder.getDomainHistory("google.com");
+  DomainHtResponse domain = await ipfinder.getDomainHistory("google.com");
   print(domain.toJson()); // print json data
 }
 ```
@@ -150,7 +150,7 @@ import 'package:ipfinder/ipfinder.dart';
 
 void main() async {
   Ipfinder ipfinder = Ipfinder("YOUR_TOKEN_GOES_HERE");
-  var by = await ipfinder.getDomainBy("DZ");
+  DomainByResponse by = await ipfinder.getDomainBy("DZ");
   print(by.toJson()); // print json data
 }
 ```
