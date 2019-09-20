@@ -20,7 +20,7 @@ class Asnvalidation {
   ///
   /// [asn] The AS number you want details for
   /// Throws an [IPfinderException] if is false.
-  static validate(asn) {
+  static validate(String asn) {
     final regexp = RegExp(r'^(as|AS)(\d+)$');
     if (regexp.hasMatch(asn) == false) {
       throw IPfinderException('Invalid asn number');

@@ -20,8 +20,9 @@ class Domainvalidation {
   ///
   /// [domain] passing in a single website name domain name.
   /// Throws an [IPfinderException] if is false.
-  static validate(domain) {
-    final regexp = RegExp(r'^(?!\-)(?:[a-zA-Z\d\-]{0,62}[a-zA-Z\d]\.){1,126}(?!\d+)[a-zA-Z\d]{1,63}$');
+  static validate(String domain) {
+    final regexp = RegExp(
+        r'^(?!\-)(?:[a-zA-Z\d\-]{0,62}[a-zA-Z\d]\.){1,126}(?!\d+)[a-zA-Z\d]{1,63}$');
     if (regexp.hasMatch(domain) == false) {
       throw IPfinderException('Invalid Domain name');
     }

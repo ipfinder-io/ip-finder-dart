@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /// The IPfinderException API class.
-class IPfinderException  {
+class IPfinderException {
   final String message;
   const IPfinderException(this.message);
 }

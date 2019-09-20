@@ -20,7 +20,7 @@ class Tokenvalidation {
   ///
   /// [token]  Your API key or the string "free" for the free API.
   /// Throws an [IPfinderException] if is token.length <= 25.
-  static validate(token) {
+  static validate(String token) {
     if (token.length <= 25) {
       throw IPfinderException('Invalid IPFINDER API Token');
     }

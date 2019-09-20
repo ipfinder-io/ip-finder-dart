@@ -11,13 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-library ipfinder;
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:ipfinder/ipfinder.dart';
+import 'dart:core';
 
 /// The Ipfinder API class.
 class Ipfinder {
@@ -52,8 +50,6 @@ class Ipfinder {
 
   String baseUrl;
 
-
-
   /// Constructor [Ipfinder].
   ///
   /// [token] string or null  add your token
@@ -78,7 +74,7 @@ class Ipfinder {
   /// [path] string   specific path of asn, IP address, ranges, Firewall,Token status
   /// [format] string available format `json` `jsonp` `php` `xml`
   /// Throws an [IPfinderException]  if the statusCode not ok.
-  Future<http.Response> call(path, format) async {
+  Future<http.Response> call(String path, String format) async {
     var headers = {
       'User-Agent': 'IPfinder dart-client',
       'Content-Type': 'application/json; charset=UTF-8',
@@ -89,9 +85,9 @@ class Ipfinder {
 
     final response =
         await http.post(defaultBaseUrl, headers: headers, body: body);
-     if (response.statusCode != 200)
-       throw IPfinderException('post error: statusCode= ${response.statusCode}');
-
+    if (response.statusCode != 200){
+      throw IPfinderException('post error: statusCode= ${response.statusCode}');
+    }
     return response;
   }
 
@@ -109,7 +105,7 @@ class Ipfinder {
   ///
   /// [path] path  IP address.
   /// Throws an [IPfinderException] if the statusCode not ok or  [path] not valide ipv(4|6).
-  Future<IpResponse> getAddressInfo(path) async {
+  Future<IpResponse> getAddressInfo(String path) async {
     Ipvalidation.validate(path);
     var data = await call(path, format);
     Map map = json.decode(data.body);
@@ -121,7 +117,7 @@ class Ipfinder {
   ///
   /// [path] path AS number.
   /// Throws an [IPfinderException] if the statusCode not ok or  [path] not valide asn number.
-  Future<AsnResponse> getAsn(path) async {
+  Future<AsnResponse> getAsn(String path) async {
     Asnvalidation.validate(path);
     var data = await call(path, format);
     Map map = json.decode(data.body);
@@ -143,8 +139,8 @@ class Ipfinder {
   ///
   /// [path]  Organization name.
   /// Throws an [IPfinderException] if the statusCode not ok .
-  Future<RangeResponse> getRanges(path) async {
-    var data = await call(rangesPath + path, format);
+  Future<RangeResponse> getRanges(String path) async {
+    var data = await call(rangesPath + Uri.encodeFull(path), format);
     Map map = json.decode(data.body);
     RangeResponse range = RangeResponse.fromJson(map);
     return range;
@@ -155,7 +151,7 @@ class Ipfinder {
   /// [path] AS number, alpha-2 country only.
   /// [formats] list formats supported
   /// Throws an [IPfinderException] if the statusCode not ok and [path], [formats] not valide  .
-  Future<http.Response> getFirewall(path, formats) async {
+  Future<http.Response> getFirewall(String path, String formats) async {
     Firewallvalidation.validate(path, formats);
     http.Response data = await call(firewallPath + path, formats);
     // String fire = String(map);
@@ -166,7 +162,7 @@ class Ipfinder {
   ///
   /// [path]  The API supports passing in a single website name domain name
   /// Throws an [IPfinderException] if the statusCode not ok or  [path] not valide domain name.
-  Future<DomainResponse> getDomain(path) async {
+  Future<DomainResponse> getDomain(String path) async {
     Domainvalidation.validate(path);
     var data = await call(domainPath + path, format);
     Map map = json.decode(data.body);
@@ -178,7 +174,7 @@ class Ipfinder {
   ///
   /// [path]  The API supports passing in a single website name domain name
   /// Throws an [IPfinderException] if the statusCode not ok or  [path] not valide domain name.
-  Future<DomainHtResponse> getDomainHistory(path) async {
+  Future<DomainHtResponse> getDomainHistory(String path) async {
     Domainvalidation.validate(path);
     var data = await call(domainhPath + path, format);
     Map map = json.decode(data.body);
@@ -190,7 +186,7 @@ class Ipfinder {
   ///
   /// [by] The API supports passing in a single ASN,Country,Ranges
   /// Throws an [IPfinderException] if the statusCode not ok.
-  Future<DomainByResponse> getDomainBy(by) async {
+  Future<DomainByResponse> getDomainBy(String by) async {
     var data = await call(domainbyPath + by, format);
     Map map = json.decode(data.body);
     DomainByResponse domainby = DomainByResponse.fromJson(map);
