@@ -91,7 +91,7 @@ void main() {
     throw IPfinderException("Expected IPfinderException ");
   });
 
-  test('test Domain getDomainHistory and getDomain Exception', () async{
+  test('test Domain getDomainHistory and getDomain Exception', () async {
     try {
       Ipfinder ipfinder = Ipfinder();
       var domain = "fsdf";
@@ -104,25 +104,27 @@ void main() {
     throw IPfinderException("Expected IPfinderException ");
   });
 
-  test('test Firewall Format getFirewall Exception', () async{
+  test('test Firewall Format getFirewall Exception', () async {
     try {
       Ipfinder ipfinder = Ipfinder();
       var format = "asdasd";
       await ipfinder.getFirewall("as1", format);
     } on IPfinderException catch (e) {
-      expect(e.message,'Invalid Format supported format https://ipfinder.io/docs/?shell#firewall');
+      expect(e.message,
+          'Invalid Format supported format https://ipfinder.io/docs/?shell#firewall');
       return;
     }
     throw IPfinderException("Expected IPfinderException ");
   });
 
-  test('test Firewall By getFirewall Exception', () async{
+  test('test Firewall By getFirewall Exception', () async {
     try {
       Ipfinder ipfinder = Ipfinder();
       var country = "DZZ";
       await ipfinder.getFirewall(country, "juniper_junos");
     } on IPfinderException catch (e) {
-      expect(e.message,'Invalid Firewall string please use AS number or ISO 3166-1 alpha-2 country');
+      expect(e.message,
+          'Invalid Firewall string please use AS number or ISO 3166-1 alpha-2 country');
       return;
     }
     throw IPfinderException("Expected IPfinderException ");
