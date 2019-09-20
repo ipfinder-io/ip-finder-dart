@@ -23,7 +23,7 @@ void main() {
       expect(e.message, 'Invalid IPFINDER API Token');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
 
   test('test BaseUrl', () {
@@ -77,7 +77,7 @@ void main() {
       expect(e.message, 'Invalid IPaddress');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
   test('test Asn getAsn Exception', () async {
     try {
@@ -88,7 +88,7 @@ void main() {
       expect(e.message, 'Invalid asn number');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
 
   test('test Domain getDomainHistory and getDomain Exception', () async{
@@ -101,7 +101,7 @@ void main() {
       expect(e.message, 'Invalid Domain name');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
 
   test('test Firewall Format getFirewall Exception', () async{
@@ -113,7 +113,7 @@ void main() {
       expect(e.message,'Invalid Format supported format https://ipfinder.io/docs/?shell#firewall');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
 
   test('test Firewall By getFirewall Exception', () async{
@@ -125,6 +125,6 @@ void main() {
       expect(e.message,'Invalid Firewall string please use AS number or ISO 3166-1 alpha-2 country');
       return;
     }
-    throw new IPfinderException("Expected IPfinderException ");
+    throw IPfinderException("Expected IPfinderException ");
   });
 }
