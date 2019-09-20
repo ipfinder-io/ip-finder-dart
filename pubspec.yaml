@@ -8,7 +8,7 @@ description: Official Dart client library for IPfinder.
     - Get Domain IP.
     - Get Domain IP history.
     - Get list Domain By ASN, Country,Ranges.
-version: 1.0.0
+version: 1.0.1
 author: Mohamed Ben rebia <mohamed@ipfinder.io>
 homepage: https://ipfinder.io
 repository: https://github.com/ipfinder-io/ip-finder-dart
