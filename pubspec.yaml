@@ -2,7 +2,7 @@ name: ipfinder
 description: Official Dart client library for IPfinder.
 version: 1.0.0
 author: Mohamed Ben rebia <mohamed@ipfinder.io>
-homepage: https://ipfinder.io/
+homepage: https://ipfinder.io
 repository: https://github.com/ipfinder-io/ip-finder-dart
 
 environment:
