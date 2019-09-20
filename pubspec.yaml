@@ -1,5 +1,13 @@
 name: ipfinder
 description: Official Dart client library for IPfinder.
+    - IP address details.
+    - ASN details.
+    - Firewall by supported formats details.
+    - IP Address Ranges by the Organization name details.
+    - service status details.
+    - Get Domain IP.
+    - Get Domain IP history.
+    - Get list Domain By ASN, Country,Ranges.
 version: 1.0.0
 author: Mohamed Ben rebia <mohamed@ipfinder.io>
 homepage: https://ipfinder.io
