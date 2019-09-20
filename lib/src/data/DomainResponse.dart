@@ -1,17 +1,13 @@
-// Copyright 2019 Mohamed Benrebia <mohamed@ipfinder.io>
+// To parse this JSON data, do
+//
+//     final domainResponse = domainResponseFromJson(jsonString);
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 import 'dart:convert';
+
+DomainResponse domainResponseFromJson(String str) =>
+    DomainResponse.fromJson(json.decode(str));
+
+String domainResponseToJson(DomainResponse data) => json.encode(data.toJson());
 
 class DomainResponse {
   String status;
@@ -50,46 +46,49 @@ class DomainResponse {
     this.organization,
   });
 
-  factory DomainResponse.fromRawJson(String str) =>
-      DomainResponse.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
   factory DomainResponse.fromJson(Map<String, dynamic> json) => DomainResponse(
-        status: json["status"],
-        statusMessage: json["status_message"],
-        ip: json["ip"],
-        domain: json["domain"],
-        domainStatus: json["domain_status"],
-        continentCode: json["continent_code"],
-        continentName: json["continent_name"],
-        countryCode: json["country_code"],
-        countryName: json["country_name"],
-        countryNativeName: json["country_native_name"],
-        regionName: json["region_name"],
-        city: json["city"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
-        asn: json["asn"],
-        organization: json["organization"],
+        status: json["status"] == null ? null : json["status"],
+        statusMessage:
+            json["status_message"] == null ? null : json["status_message"],
+        ip: json["ip"] == null ? null : json["ip"],
+        domain: json["domain"] == null ? null : json["domain"],
+        domainStatus:
+            json["domain_status"] == null ? null : json["domain_status"],
+        continentCode:
+            json["continent_code"] == null ? null : json["continent_code"],
+        continentName:
+            json["continent_name"] == null ? null : json["continent_name"],
+        countryCode: json["country_code"] == null ? null : json["country_code"],
+        countryName: json["country_name"] == null ? null : json["country_name"],
+        countryNativeName: json["country_native_name"] == null
+            ? null
+            : json["country_native_name"],
+        regionName: json["region_name"] == null ? null : json["region_name"],
+        city: json["city"] == null ? null : json["city"],
+        latitude: json["latitude"] == null ? null : json["latitude"],
+        longitude: json["longitude"] == null ? null : json["longitude"],
+        asn: json["asn"] == null ? null : json["asn"],
+        organization:
+            json["organization"] == null ? null : json["organization"],
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "status_message": statusMessage,
-        "ip": ip,
-        "domain": domain,
-        "domain_status": domainStatus,
-        "continent_code": continentCode,
-        "continent_name": continentName,
-        "country_code": countryCode,
-        "country_name": countryName,
-        "country_native_name": countryNativeName,
-        "region_name": regionName,
-        "city": city,
-        "latitude": latitude,
-        "longitude": longitude,
-        "asn": asn,
-        "organization": organization,
+        "status": status == null ? null : status,
+        "status_message": statusMessage == null ? null : statusMessage,
+        "ip": ip == null ? null : ip,
+        "domain": domain == null ? null : domain,
+        "domain_status": domainStatus == null ? null : domainStatus,
+        "continent_code": continentCode == null ? null : continentCode,
+        "continent_name": continentName == null ? null : continentName,
+        "country_code": countryCode == null ? null : countryCode,
+        "country_name": countryName == null ? null : countryName,
+        "country_native_name":
+            countryNativeName == null ? null : countryNativeName,
+        "region_name": regionName == null ? null : regionName,
+        "city": city == null ? null : city,
+        "latitude": latitude == null ? null : latitude,
+        "longitude": longitude == null ? null : longitude,
+        "asn": asn == null ? null : asn,
+        "organization": organization == null ? null : organization,
       };
 }

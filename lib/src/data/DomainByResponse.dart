@@ -1,66 +1,63 @@
-// Copyright 2019 Mohamed Benrebia <mohamed@ipfinder.io>
+// To parse this JSON data, do
+//
+//     final domainByResponse = domainByResponseFromJson(jsonString);
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 import 'dart:convert';
+
+DomainByResponse domainByResponseFromJson(String str) =>
+    DomainByResponse.fromJson(json.decode(str));
+
+String domainByResponseToJson(DomainByResponse data) =>
+    json.encode(data.toJson());
 
 class DomainByResponse {
   String status;
   String statusMessage;
   String selectBy;
   int totalDomain;
-  List<List<ListDomain>> listDomain;
+  List<List<ListsDomain>> listsDomains;
 
   DomainByResponse({
     this.status,
     this.statusMessage,
     this.selectBy,
     this.totalDomain,
-    this.listDomain,
+    this.listsDomains,
   });
-
-  factory DomainByResponse.fromRawJson(String str) =>
-      DomainByResponse.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
 
   factory DomainByResponse.fromJson(Map<String, dynamic> json) =>
       DomainByResponse(
-        status: json["status"],
-        statusMessage: json["status_message"],
-        selectBy: json["select_by"],
-        totalDomain: json["total_domain"],
-        listDomain: List<List<ListDomain>>.from(json["list_domain"].map((x) =>
-            List<ListDomain>.from(x.map((x) => ListDomain.fromJson(x))))),
+        status: json["status"] == null ? null : json["status"],
+        statusMessage:
+            json["status_message"] == null ? null : json["status_message"],
+        selectBy: json["select_by"] == null ? null : json["select_by"],
+        totalDomain: json["total_domain"] == null ? null : json["total_domain"],
+        listsDomains: json["list_domain"] == null
+            ? null
+            : List<List<ListsDomain>>.from(json["list_domain"].map((x) =>
+                List<ListsDomain>.from(x.map((x) => ListsDomain.fromJson(x))))),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "status_message": statusMessage,
-        "select_by": selectBy,
-        "total_domain": totalDomain,
-        "list_domain": List<dynamic>.from(listDomain
-            .map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+        "status": status == null ? null : status,
+        "status_message": statusMessage == null ? null : statusMessage,
+        "select_by": selectBy == null ? null : selectBy,
+        "total_domain": totalDomain == null ? null : totalDomain,
+        "list_domain": listsDomains == null
+            ? null
+            : List<dynamic>.from(listsDomains
+                .map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
       };
 }
 
-class ListDomain {
+class ListsDomain {
   String domainName;
   String address;
   String country;
   String asn;
   String organization;
 
-  ListDomain({
+  ListsDomain({
     this.domainName,
     this.address,
     this.country,
@@ -68,24 +65,20 @@ class ListDomain {
     this.organization,
   });
 
-  factory ListDomain.fromRawJson(String str) =>
-      ListDomain.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory ListDomain.fromJson(Map<String, dynamic> json) => ListDomain(
-        domainName: json["domain_name"],
-        address: json["address"],
-        country: json["country"],
-        asn: json["asn"],
-        organization: json["organization"],
+  factory ListsDomain.fromJson(Map<String, dynamic> json) => ListsDomain(
+        domainName: json["domain_name"] == null ? null : json["domain_name"],
+        address: json["address"] == null ? null : json["address"],
+        country: json["country"] == null ? null : json["country"],
+        asn: json["asn"] == null ? null : json["asn"],
+        organization:
+            json["organization"] == null ? null : json["organization"],
       );
 
   Map<String, dynamic> toJson() => {
-        "domain_name": domainName,
-        "address": address,
-        "country": country,
-        "asn": asn,
-        "organization": organization,
+        "domain_name": domainName == null ? null : domainName,
+        "address": address == null ? null : address,
+        "country": country == null ? null : country,
+        "asn": asn == null ? null : asn,
+        "organization": organization == null ? null : organization,
       };
 }
